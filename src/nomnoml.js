@@ -4,22 +4,6 @@ nomnoml.version = '0.5.0'
 
 nomnoml.skanaar = skanaar
 
-nomnoml.Classifier = function (type, name, compartments){
-	return {
-        type: type,
-        name: name,
-        compartments: compartments
-    }
-}
-
-nomnoml.Compartment = function (lines, nodes, relations){
-	return {
-        lines: lines,
-        nodes: nodes,
-        relations: relations
-    }
-}
-
 ;(function () {
 	'use strict';
 
@@ -40,7 +24,7 @@ nomnoml.Compartment = function (lines, nodes, relations){
 		var ast = nomnoml.parse(code)
 		var config = ast.config
 		var measurer = {
-			setFont: function (a, b, c) { setFont(a, b, c, graphics); },
+			setFont: function (txt, bold, ital) { setFont(txt, bold, ital, graphics); },
 			textWidth: function (s) { return graphics.measureText(s).width },
 			textHeight: function () { return config.leading * config.fontSize }
 		};
@@ -69,7 +53,7 @@ nomnoml.Compartment = function (lines, nodes, relations){
 			skCanvas.font(font)
 		}
 		var measurer = {
-			setFont: function (a, b, c) { setFont(a, b, c, skCanvas); },
+			setFont: function (txt, bold, ital) { setFont(txt, bold, ital, skCanvas); },
 			textWidth: function (s) { return skCanvas.measureText(s).width },
 			textHeight: function () { return config.leading * config.fontSize }
 		};
